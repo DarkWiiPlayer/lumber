@@ -5,10 +5,7 @@ A simple and extensible logging library for Lua
 ## Provided features
 
 - Log Levels
-- Default formatters:
-	- Simple logfile with timestamp
-	- Unmodified input
-	- Linux terminal (colours)
+- Default formatters (Term, File and Plain)
 - Function arguments (for expensive debugging info)
 - Simple extension interface
 

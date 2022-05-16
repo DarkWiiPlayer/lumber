@@ -1,3 +1,8 @@
+--- Simple colouring log formatter for (linux) terminal output.
+-- Log levels are colourised fo reasier reading.
+-- @usage
+-- local log = lumber.new((require 'lumber.format.term'))
+
 local colors = { "36", "31", "33", "32", "35" }
 
 return function(level, input)
