@@ -18,9 +18,12 @@ log = lumber.new {
 	format = require 'lumber.format.term'; -- default is lumber.format.plain
 	out = io.stderr; -- default
 	level = lumber.levels.DEBUG; -- default is INFO
+	separator = "\n"; -- default is single space
 }
 
 log("Some Information") -- same as log:info()
+
+log("Foo", "Bar") -- Concatenated with `separator`
 
 log(some_object) -- Fed through `tostring` before printing
 

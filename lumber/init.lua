@@ -12,16 +12,16 @@ local levels = {
 
 lumber.levels = {}
 
-local function combine(...)
+local function combine(logger, ...)
 	local input = {...}
 	for index, value in ipairs(input) do
 		if type(value) == "function" then
-			input[index] = combine(value())
+			input[index] = combine(logger, value())
 		else
 			input[index] = tostring(input[index])
 		end
 	end
-	return table.concat(input, " ")
+	return table.concat(input, logger.separator)
 end
 
 lumber.__index = lumber
@@ -30,6 +30,7 @@ lumber.__call = function(self, ...) return self:info(...) end
 lumber.format = require 'lumber.format.plain'
 lumber.out = io.stderr
 lumber.level = 3
+lumber.separator = " "
 
 --- Creates a new logger object.
 -- When an options table is passed in, it is returned after assigning it a new metatable.
@@ -50,7 +51,7 @@ end
 function lumber:log(level, ...)
 	if not self.level then error("First argument is not a logger (calling with . instead of :?)", 2) end
 	if self.level >= level.index then
-		self.out:write(self.format(level, combine(...)))
+		self.out:write(self.format(level, combine(self, ...)))
 		self.out:write("\n")
 	end
 end
