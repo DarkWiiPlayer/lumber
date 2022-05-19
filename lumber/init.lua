@@ -16,7 +16,9 @@ local function combine(...)
 	local input = {...}
 	for index, value in ipairs(input) do
 		if type(value) == "function" then
-			input[index] = value()
+			input[index] = combine(value())
+		else
+			input[index] = tostring(input[index])
 		end
 	end
 	return table.concat(input, " ")
@@ -25,15 +27,17 @@ end
 lumber.__index = lumber
 lumber.__call = function(self, ...) return self:info(...) end
 
---- Creates a new logger object
--- @tparam function format A format function that formats the log message
--- @tparam io out An object with a `write` method to write output to
--- @tparam number level A number describing the output log level
-function lumber.new(format, out, level)
-	local format = format or require 'lumber.format.plain'
-	local out = out or io.stderr
-	local level = level or 3
-	return setmetatable({ format = format, out = out, level = level }, lumber)
+lumber.format = require 'lumber.format.plain'
+lumber.out = io.stderr
+lumber.level = 3
+
+--- Creates a new logger object.
+-- When an options table is passed in, it is returned after assigning it a new metatable.
+-- @tparam[opt={}] table options A table with options for the logger
+-- @return A new logger object.
+function lumber.new(logger)
+	logger = logger or {}
+	return setmetatable(logger, lumber)
 end
 
 --- Lumber Logger

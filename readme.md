@@ -14,13 +14,15 @@ A simple and extensible logging library for Lua
 ```lua
 local lumber = require 'lumber'
 
-log = lumber.new(
-	require 'lumber.format.term', -- default is lumber.format.plain
-	io.stderr, -- default
-	lumber.levels.DEBUG -- default is INFO
-)
+log = lumber.new {
+	format = require 'lumber.format.term'; -- default is lumber.format.plain
+	out = io.stderr; -- default
+	level = lumber.levels.DEBUG; -- default is INFO
+}
 
 log("Some Information") -- same as log:info()
+
+log(some_object) -- Fed through `tostring` before printing
 
 log:debug(
 	"Open connections:",
