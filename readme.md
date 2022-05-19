@@ -19,13 +19,14 @@ log = lumber.new {
 	out = io.stderr; -- default
 	level = lumber.levels.DEBUG; -- default is INFO
 	separator = "\n"; -- default is single space
+	filter = require 'inspect'; -- default `tostring`
 }
 
 log("Some Information") -- same as log:info()
 
 log("Foo", "Bar") -- Concatenated with `separator`
 
-log(some_object) -- Fed through `tostring` before printing
+log(some_object) -- Fed through `filter` before printing
 
 log:debug(
 	"Open connections:",
