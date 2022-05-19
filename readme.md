@@ -24,7 +24,7 @@ log("Some Information") -- same as log:info()
 
 log:debug(
 	"Open connections:",
-	list_open_connections() -- Won't get called when log level < debug
+	list_open_connections -- Won't get called when log level < debug
 )
 ```
 
