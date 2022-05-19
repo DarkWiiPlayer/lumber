@@ -1,0 +1,406 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Options">Options </a></li>
+<li><a href="#Class_Logger">Class Logger </a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/lumber.format.file.html">lumber.format.file</a></li>
+  <li><a href="../modules/lumber.format.plain.html">lumber.format.plain</a></li>
+  <li><a href="../modules/lumber.format.term.html">lumber.format.term</a></li>
+  <li><strong>lumber</strong></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="../topics/readme.md.html">readme</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>lumber</code></h1>
+<p>Simple and Modular logging library for Lua.</p>
+<p> This is the core module of Lumber where most of the magic happens here.</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new">new ([options={}])</a></td>
+	<td class="summary">Creates a new logger object.</td>
+	</tr>
+</table>
+<h2><a href="#Options">Options </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#format">format</a></td>
+	<td class="summary">Formatter function.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#out">out</a></td>
+	<td class="summary">IO object to write output to.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#level">level</a></td>
+	<td class="summary">Log level.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#filter">filter</a></td>
+	<td class="summary">Filter function for non-function values.</td>
+	</tr>
+</table>
+<h2><a href="#Class_Logger">Class Logger </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Logger:log">Logger:log (level, message[, ...])</a></td>
+	<td class="summary">Logs a message with a given level</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Logger:fatal">Logger:fatal (message[, ...])</a></td>
+	<td class="summary">Logs a message with fatal level</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Logger:error">Logger:error (message[, ...])</a></td>
+	<td class="summary">Logs a message with error level</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Logger:warn">Logger:warn (message[, ...])</a></td>
+	<td class="summary">Logs a message with warn level</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Logger:info">Logger:info (message[, ...])</a></td>
+	<td class="summary">Logs a message with info level</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Logger:debug">Logger:debug (message[, ...])</a></td>
+	<td class="summary">Logs a message with debug level</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new"></a>
+    <strong>new ([options={}])</strong>
+    </dt>
+    <dd>
+    Creates a new logger object.
+ When an options table is passed in, it is returned after assigning it a new metatable.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">options</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         A table with options for the logger
+         (<em>default</em> {})
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        A new logger object.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> lumber = <span class="global">require</span> <span class="string">'lumber'</span>
+<span class="keyword">local</span> log = lumber.new {
+	level = <span class="number">5</span>;
+	out = <span class="global">io</span>.stderr;
+	<span class="comment">-- etc.
+</span>}</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Options"></a>Options </h2>
+
+          <div class="section-description">
+           Each of these options can be set for every logger object.
+ They can also be overridden globally by modifying the defaults
+ in the <a href="../modules/lumber.html#">lumber</a> table directly, but this is not recommended.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "format"></a>
+    <strong>format</strong>
+    </dt>
+    <dd>
+    Formatter function.
+ This function receives the log level
+ and the concatenated log message as a
+ string and should return the final string
+ that is written to the output object.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "out"></a>
+    <strong>out</strong>
+    </dt>
+    <dd>
+    IO object to write output to.
+ This must be an object with a <code>write</code> method,
+ but otherwise doesn&rsquo;t have to be an actual IO
+ object.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "level"></a>
+    <strong>level</strong>
+    </dt>
+    <dd>
+    Log level.
+ Everything logged with a higher level than this
+ will be ignored.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "filter"></a>
+    <strong>filter</strong>
+    </dt>
+    <dd>
+    Filter function for non-function values.
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_Logger"></a>Class Logger </h2>
+
+          <div class="section-description">
+          The actual logger object which does the logging.
+          </div>
+            <h3>Usage:</h3>
+            <pre class="example"><span class="keyword">local</span> log = lumber.new {
+	level = <span class="number">3</span>
+}
+log:info(<span class="string">"Something happened"</span>)
+log.level = <span class="number">2</span> <span class="comment">-- Options can be changed later on</span></pre>
+    <dl class="function">
+    <dt>
+    <a name = "Logger:log"></a>
+    <strong>Logger:log (level, message[, ...])</strong>
+    </dt>
+    <dd>
+    Logs a message with a given level
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">level</span>
+            <span class="types"><span class="type">{index=number,name=string}</span></span>
+         The level to which to log
+        </li>
+        <li><span class="parameter">message</span>
+         String or function that returns one
+        </li>
+        <li><span class="parameter">...</span>
+         Further log messages
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Logger:fatal"></a>
+    <strong>Logger:fatal (message[, ...])</strong>
+    </dt>
+    <dd>
+    Logs a message with fatal level
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">message</span>
+         String or function that returns one
+        </li>
+        <li><span class="parameter">...</span>
+         Further log messages
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Logger:error"></a>
+    <strong>Logger:error (message[, ...])</strong>
+    </dt>
+    <dd>
+    Logs a message with error level
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">message</span>
+         String or function that returns one
+        </li>
+        <li><span class="parameter">...</span>
+         Further log messages
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Logger:warn"></a>
+    <strong>Logger:warn (message[, ...])</strong>
+    </dt>
+    <dd>
+    Logs a message with warn level
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">message</span>
+         String or function that returns one
+        </li>
+        <li><span class="parameter">...</span>
+         Further log messages
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Logger:info"></a>
+    <strong>Logger:info (message[, ...])</strong>
+    </dt>
+    <dd>
+    Logs a message with info level
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">message</span>
+         String or function that returns one
+        </li>
+        <li><span class="parameter">...</span>
+         Further log messages
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Logger:debug"></a>
+    <strong>Logger:debug (message[, ...])</strong>
+    </dt>
+    <dd>
+    Logs a message with debug level
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">message</span>
+         String or function that returns one
+        </li>
+        <li><span class="parameter">...</span>
+         Further log messages
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-05-19 09:16:25 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
