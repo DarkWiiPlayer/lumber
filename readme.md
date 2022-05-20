@@ -47,3 +47,8 @@ local my_formatter(level, input)
 	return level.name .. " : " .. input
 end
 ```
+
+## lnav
+
+If you use [`lnav`](https://lnav.org), copy the contents of the `lnav` directory
+to `~/.lnav/formats/lumber/`.
