@@ -72,6 +72,10 @@ lumber.level = 3
 lumber.separator = " "
 --- Filter function for non-function values.
 lumber.filter = tostring
+--- Function that returns additional context.
+-- Formatters may decide what to do with this data, or to discard it entirely.
+-- This could be a thread id, a file name, etc.
+lumber.context = nil
 
 --- The actual logger object which does the logging.
 -- @type Logger
@@ -90,7 +94,7 @@ lumber.filter = tostring
 function lumber:log(level, ...)
 	if not self.level then error("First argument is not a logger (calling with . instead of :?)", 2) end
 	if self.level >= level.index then
-		self.out:write(self.format(level, combine(self, ...)))
+		self.out:write(self.format(level, combine(self, ...), self.context and self.context()))
 		self.out:write("\n")
 	end
 end

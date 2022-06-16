@@ -8,6 +8,7 @@ local function file_line(x)
 	return info.short_src..":"..info.currentline
 end
 
-return function(level, input)
-	return string.format("%s [%s] %s -- %s", os.date("%Y-%m-%d %H:%M:%S %z"), level.name, file_line(3), input)
+return function(level, input, context)
+	context = context and "["..context.."] " or ""
+	return string.format("%s%s [%s] %s -- %s", context, os.date("%Y-%m-%d %H:%M:%S %z"), level.name, file_line(3), input)
 end

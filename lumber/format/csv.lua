@@ -15,12 +15,13 @@ local function escape(str)
 	end
 end
 
-return function(level, message)
+return function(level, message, context)
 	return table.concat({
 		os.date("%Y-%m-%dT%H:%M:%S%z");
 		level.index;
 		level.name;
 		file_line(3);
+		context;
 	}, ",")
 	.. ","
 	.. escape(message)

@@ -6,7 +6,7 @@
 		"url": "https://github.com/darkwiiplayer/lumber",
 		"regex": {
 			"line": {
-				"pattern": "^(?<timestamp>[\\d-]{10} [\\d:]{8}) [-+]\\d{4} \\[(?<level>[A-Z]+)\\] (?<src_file>[^:]+):(?<src_line>\\d+) -- (?<body>.*)$"
+				"pattern": "^(\\[(?<context>.*)\\] )?(?<timestamp>[\\d-]{10} [\\d:]{8}) [-+]\\d{4} \\[(?<level>[A-Z]+)\\] (?<src_file>[^:]+):(?<src_line>\\d+) -- (?<body>.*)$"
 			}
 		},
 		"timestamp-format": "%Y-%m-%d %H:%M:%S %z",
@@ -19,6 +19,10 @@
 			"debug": "DEBUG"
 		},
 		"value": {
+			"context": {
+				"kind": "string",
+				"foreign-key": true
+			},
 			"src_line": {
 				"kind": "integer",
 				"foreign-key": true
