@@ -17,6 +17,7 @@ build = {
 		["lumber.format.file"] = "lumber/format/file.lua",
 		["lumber.format.plain"] = "lumber/format/plain.lua",
 		["lumber.format.term"] = "lumber/format/term.lua",
-		["lumber.init"] = "lumber/init.lua"
+		["lumber.global"] = "lumber/init.lua",
+		["lumber.init"] = "lumber/init.lua",
 	}
 }

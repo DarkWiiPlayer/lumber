@@ -32,6 +32,22 @@ A simple and extensible logging library for Lua
 		list_open_connections -- Won't get called when log level < debug
 	)
 
+## Global Logger
+
+Lumber provides a utility module to help programs setting a global logger and
+libraries check for its presence and use it.
+
+A library that wants to log information can simply require the `lumber.global`
+module and treat it as its logger. When no global logger is configured, its
+logging methods will simply do nothing.
+
+An application that wants to introduce logging just has to call the module table
+with a logger object, or an options table as expected by `lumber.new`. This call
+will end by returning the global logger for easier chaining.
+
+The global logger is stored in the `_G.logger` variable, but should generally
+only be used through this module.
+
 ## Custom Context:
 
 Loggers can be configured with an additional context function.
