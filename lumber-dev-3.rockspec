@@ -1,9 +1,10 @@
 package = "lumber"
-version = "dev-2"
+version = "dev-3"
 source = {
 	url = "git+https://github.com/darkwiiplayer/lumber"
 }
 description = {
+	summary = "A versatile logging library for Lua",
 	homepage = "https://github.com/darkwiiplayer/lumber",
 	license = "Unlicense"
 }
