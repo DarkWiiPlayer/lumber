@@ -30,7 +30,7 @@ function meta:__call(logger)
 	return self
 end
 
-for level, numeric in pairs(lumber.levels) do
+for level in pairs(lumber.levels) do
 	level = level:lower()
 	global[level] = function(...)
 		if _G.logger then
