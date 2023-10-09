@@ -48,6 +48,15 @@ will end by returning the global logger for easier chaining.
 The global logger is stored in the `_G.logger` variable, but should generally
 only be used through this module.
 
+	require("lumber.global") {
+		format = require 'lumber.format.term';
+		context = function()
+			local info = debug.getinfo(3)
+			return info.short_src
+		end;
+		level = 5;
+	}
+
 ## Custom Context:
 
 Loggers can be configured with an additional context function.
